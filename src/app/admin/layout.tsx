@@ -2,6 +2,7 @@
 import Loader from '@/components/admin-panel/Loader'
 import Login from '@/components/admin-panel/Login'
 import Sidebar from '@/components/admin-panel/Sidebar'
+import Navbar from '@/components/front-end/Navbar'
 import { useAppSelector } from '@/redux/hooks'
 import { useSession } from 'next-auth/react'
 import React from 'react'
@@ -18,7 +19,9 @@ const layout = ({children}: {children: React.ReactNode}) => {
     return <div className='flex'>
       <Sidebar/>
       <div className='w-full h-full'>
-        {/* <Navbar/> */}
+        <Navbar setShowCart={function (value: React.SetStateAction<boolean>): void {
+          throw new Error('Function not implemented.')
+        } }/>
         <div className='bg-gray-200 p-4 h-[calc(100vh-64px)]'>
           {children}
         </div>
