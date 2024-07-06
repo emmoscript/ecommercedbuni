@@ -40,10 +40,10 @@ const Cart = ({ setShowCart }: any) => {
         <p>${getTotal()}.00</p>
         </div>
 
-        <button className="bg-black text-white text-center w-full rounded-3xl py-2 hover:bg-accent mb-4 mt-4">
+        <button className="bg-[#243746] text-white text-center w-full rounded-3xl py-2 hover:bg-accent mb-4 mt-4">
             View Cart
         </button>
-        <button className="bg-black text-white text-center w-full rounded-3xl py-2 hover:bg-accent">
+        <button className="bg-[#243746] text-white text-center w-full rounded-3xl py-2 hover:bg-accent">
             Checkout
         </button>
       </div>

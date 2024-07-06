@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className='bg-[#e2edf6] mt-4'>
+    <div className='bg-gradient-to-r from-blue-300 to-cyan-300 mt-4'>
         <div className='container grid md:grid-cols-2 py-8'>
             <div className='flex items-center'>
                 <div className='max-w-[450px] space-y-4'>
@@ -21,7 +21,7 @@ const Hero = () => {
                     className='inline-block bg-white rounded-md px-6
                     py-3 hover:bg-accent hover:text-white'
                     href="#">
-                        Buy Now
+                        Shop Now
 
                     </a>
 
