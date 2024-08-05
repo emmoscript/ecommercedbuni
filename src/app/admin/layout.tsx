@@ -19,9 +19,9 @@ const layout = ({children}: {children: React.ReactNode}) => {
     return <div className='flex'>
       <Sidebar/>
       <div className='w-full h-full'>
-        <Navbar setShowCart={function (value: React.SetStateAction<boolean>): void {
+        {/*<Navbar setShowCart={function (value: React.SetStateAction<boolean>): void {
           throw new Error('Function not implemented.')
-        } }/>
+        } }/>*/}
         <div className='bg-gray-200 p-4 h-[calc(100vh-64px)]'>
           {children}
         </div>
