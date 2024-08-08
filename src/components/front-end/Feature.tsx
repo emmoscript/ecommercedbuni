@@ -8,7 +8,7 @@ const data = [
   {
     icon: <TbTruckDelivery className="text-4x1" />,
     title: "Free Delivery",
-    desc: "Orders from all item",
+    desc: "For orders of any item",
   },
   {
     icon: <RiRefund2Fill className="text-4x1" />,
@@ -18,7 +18,7 @@ const data = [
   {
     icon: <RiDiscountPercentLine className="text-4x1" />,
     title: "Member Discount",
-    desc: "On Order Over $99.00",
+    desc: "On Orders Over $99.00",
   },
   {
     icon: <MdSupportAgent className="text-4x1" />,

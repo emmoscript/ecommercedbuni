@@ -16,13 +16,15 @@ const Navbar = ({setShowCart}: PropsType) => {
     <div className='pt-4 bg-white top-0 sticky'>
         <div className='container'>
             <div className='flex justify-between items-center'>
-                <div className="text-4xl font-bold bg-gradient-to-r from-purple-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent">NutriFuel</div>
+                <Link href="/">
+                <div className="text-4xl font-bold bg-gradient-to-r from-[#9554fe] via-[#1385fc] to-cyan-300 bg-clip-text text-transparent">NutriFuel</div>
+                </Link>
                 <div className='lg:flex hidden w-full max-w-[500px]'>
                     <input 
-                    className='border-2 border-[#243746] px-6 py-2 w-full' 
+                    className='border-2 border-[#1385fc] px-6 py-2 w-full' 
                     type="text" 
                     placeholder='Search for products...'/>
-                    <div className='bg-[#243746] text-white text-[26px] grid place-items-center px-4'>
+                    <div className='bg-[#1385fc] text-white text-[26px] grid place-items-center px-4'>
                         <BsSearch/>
                     </div>
                 </div>

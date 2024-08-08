@@ -1,6 +1,8 @@
 import { RxCross1 } from "react-icons/rx";
 import CartProduct from "./CartProduct";
 import { useAppSelector } from "@/redux/hooks";
+import Link from 'next/link';
+
 
 const Cart = ({ setShowCart }: any) => {
   const products = useAppSelector((state) => state.cartReducer);
@@ -40,12 +42,16 @@ const Cart = ({ setShowCart }: any) => {
         <p>${getTotal()}.00</p>
         </div>
 
-        <button className="bg-[#243746] text-white text-center w-full rounded-3xl py-2 hover:bg-accent mb-4 mt-4">
+        <Link href="/cart">
+          <button className="bg-[#243746] text-white text-center w-full rounded-3xl py-2 hover:bg-accent mb-4 mt-4">
             View Cart
-        </button>
-        <button className="bg-[#243746] text-white text-center w-full rounded-3xl py-2 hover:bg-accent">
+          </button>
+        </Link>
+        <Link href="/checkout">
+          <button className="bg-[#243746] text-white text-center w-full rounded-3xl py-2 hover:bg-accent">
             Checkout
-        </button>
+          </button>
+        </Link>
       </div>
     </div>
   );

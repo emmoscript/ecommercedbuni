@@ -16,7 +16,7 @@ const handler = NextAuth({
                 password: { label: "Password", type: "password" }
             },
             authorize: async (credentials) => {
-                // Hardcoded user for demonstration purposes
+                // Usuario
                 const user = {
                     id: "1",
                     name: "Admin",
@@ -39,7 +39,7 @@ const handler = NextAuth({
     ],
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-        signIn: "src/app/components/admin-panel/Login.tsx", // Custom sign-in page
+        signIn: "src/app/components/admin-panel/Login.tsx", // Página de SignIn
     },
 });
 
