@@ -8,6 +8,7 @@ import { RiShoppingCartLine } from 'react-icons/ri'
 import { FaSignOutAlt } from 'react-icons/fa'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 
 const menus = [
@@ -58,7 +59,7 @@ const Sidebar = () => {
     return (
         <div className='bg-white w-[300px] min-h-screen p-4 shrink-0'>
             <div className='flex items-center gap-4'>
-                <img className="size-12 rounded-lg" src="/logo.png" alt="logo" />
+                <Image className="size-12 rounded-lg" width={48} height={48} src="/logo.png" alt="logo" />
                 <h2 className='text-[20px] font-semibold'>Admin Panel</h2>
             </div>
 

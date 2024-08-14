@@ -17,6 +17,7 @@ interface IProduct {
 }
 
 const ProductsPage = () => {
+  
   const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {

@@ -92,7 +92,7 @@ const Login = () => {
       </div>
 
       <div className="text-blue-50 text-sm mt-4 flex gap-2">
-        <span>Don't have an account?</span>
+        <span>Don&apos;t have an account?</span>
         <a href="#" className="text-blue-500 hover:underline">
           Register Now
         </a>
