@@ -1,5 +1,6 @@
 import { removeFromCart } from "@/redux/features/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import Image from "next/image";
 
 import { RxCross1 } from "react-icons/rx";
 
@@ -23,11 +24,11 @@ const CartProduct: React.FC<propsType> = ({
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-4">
-        <img className="h-[80px]" src={img} alt={title} />
+        <Image width={60} height={80} layout="intrinsic" src={img} alt={title} />
         <div className="text-left">
           <h3 className="font-medium text-base">{title}</h3>
           <p className="text-sm text-gray-500">
-            {quantity} x ${price}.00
+            {quantity} x ${price}
           </p>
         </div>
       </div>

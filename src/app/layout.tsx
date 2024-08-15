@@ -4,7 +4,7 @@ import "./globals.css";
 import AuthProvider from "../components/admin-panel/AuthProvider";
 import App from "./App";
 import { Toaster } from "react-hot-toast";
-import React from 'react';  // Import React for JSX syntax
+import React from 'react'; 
 
 const inter = Inter({ subsets: ["latin"] });
 

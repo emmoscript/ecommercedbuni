@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { RxCross1 } from "react-icons/rx";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/hooks";
+import Image from "next/image";
 
 const Checkout = () => {
   const router = useRouter(); // Initialize router for navigation
@@ -58,7 +59,7 @@ const Checkout = () => {
           <div className="space-y-4">
             {products.map((item: any) => (
               <div key={item.id} className="flex items-center justify-between">
-                <img src={item.img} alt={item.title} className="w-16 h-16 object-cover" />
+                <Image width={70} height={70}  src={item.img} alt={item.title} className="object-cover" />
                 <div className="flex-1 ml-4">
                   <h4 className="text-lg font-medium text-gray-800">{item.title}</h4>
                   <p className="text-gray-600">Quantity: {item.quantity}</p>

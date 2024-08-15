@@ -39,7 +39,7 @@ const Cart = ({ setShowCart }: any) => {
 
         <div className="flex justify-between items-center font-medium text-xl py-4">
         <p>Total:</p>
-        <p>${getTotal()}.00</p>
+        <p>${getTotal()}</p>
         </div>
 
         <Link href="/cart">
