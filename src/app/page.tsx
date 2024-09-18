@@ -6,7 +6,7 @@ import Footer from '@/components/front-end/Footer';
 import Hero from '@/components/front-end/Hero';
 import Navbar from '@/components/front-end/Navbar';
 import TrendingProducts from '@/components/front-end/TrendingProducts';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const Home = () => {
   
