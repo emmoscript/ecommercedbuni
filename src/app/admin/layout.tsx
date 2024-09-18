@@ -1,32 +1,36 @@
-"use client"
-import Loader from '@/components/admin-panel/Loader'
-import Login from '@/components/admin-panel/Login'
-import Sidebar from '@/components/admin-panel/Sidebar'
-import { useAppSelector } from '@/redux/hooks'
-import { useSession } from 'next-auth/react'
-import React from 'react'
+"use client";
+import Loader from '@/components/admin-panel/Loader';
+import Login from '@/app/login/page';
+import Sidebar from '@/components/admin-panel/Sidebar';
+import { useAppSelector } from '@/redux/hooks';
+import { useSession } from 'next-auth/react';
+import React from 'react';
 
-const Layout = ({children}: {children: React.ReactNode}) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { data: session, status } = useSession();
+  const reduxLoading = useAppSelector(store => store.LoadingReducer);
+  
+  // Show loader while session is being loaded
+  if (status === 'loading') {
+    return <Loader />;
+  }
 
-    const isLoading = useAppSelector(store => store.LoadingReducer)
-    const {data: session} = useSession()
+  // If the session is not available (user is not authenticated), show the Login page
+  if (!session) {
+    return <Login />;
+  }
 
-    if(!session?.user){
-        return <Login />
-    }
-
-    return <div className='flex'>
-      <Sidebar/>
+  return (
+    <div className='flex'>
+      <Sidebar />
       <div className='w-full h-full'>
-        {/*<Navbar setShowCart={function (value: React.SetStateAction<boolean>): void {
-          throw new Error('Function not implemented.')
-        } }/>*/}
-        <div className='bg-gray-200 p-4 ]'>
+        <div className='bg-gray-200 p-4'>
           {children}
         </div>
       </div>
-      {isLoading && <Loader/>}
+      {reduxLoading && <Loader />}
     </div>
+  );
 };
 
-export default Layout
+export default Layout;

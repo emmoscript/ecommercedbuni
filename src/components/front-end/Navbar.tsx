@@ -30,7 +30,7 @@ const Navbar = ({setShowCart}: PropsType) => {
                 </div>
 
                 <div className='flex gap-4 md:gap-8'>
-                <Link href="/admin/dashboard">
+                <Link href="/login">
                     <div className='md:flex hidden gap-3' >
                         <div className='rounded-full border-2 border-gray-300 text-gray-500 text-[32px] w-[50px] h-[50px]
                         grid place-items-center'>

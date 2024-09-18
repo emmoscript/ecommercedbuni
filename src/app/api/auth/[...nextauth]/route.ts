@@ -1,46 +1,71 @@
-import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from "next-auth";
+import { Account, User as AuthUser } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+import User from "@/libs/models/User";
+import connectMongoDB from "@/libs/MongoConnect";
 
-const handler = NextAuth({
+export const authOptions: any = {
+    // Configure one or more authentication providers
     providers: [
-        GoogleProvider({
-            clientId: process.env.CLIENT_ID!,
-            clientSecret: process.env.CLIENT_SECRET!,
-        }),
-        CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-                username: { label: "Username", type: "text" },
-                email: { label: "Email", type: "email" },
-                password: { label: "Password", type: "password" }
-            },
-            authorize: async (credentials) => {
-                // Usuario
-                const user = {
-                    id: "1",
-                    name: "Admin",
-                    email: "admin@example.com",
-                    username: "admin",
-                    password: "admin"
-                };
-
-                if (
-                    credentials?.username === user.username &&
-                    credentials?.email === user.email &&
-                    credentials?.password === user.password
-                ) {
-                    return user;
-                } else {
-                    return null;
-                }
+      CredentialsProvider({
+        id: "credentials",
+        name: "Credentials",
+        credentials: {
+          email: { label: "Email", type: "text" },
+          password: { label: "Password", type: "password" },
+        },
+        async authorize(credentials: any) {
+          await connectMongoDB();
+          try {
+            const user = await User.findOne({ email: credentials.email });
+            if (user) {
+              const isPasswordCorrect = await bcrypt.compare(
+                credentials.password,
+                user.password
+              );
+              if (isPasswordCorrect) {
+                return user;
+              }
             }
-        })
+          } catch (err: any) {
+            throw new Error(err);
+          }
+        },
+      }),
+      GithubProvider({
+        clientId: process.env.GITHUB_ID ?? "",
+        clientSecret: process.env.GITHUB_SECRET ?? "",
+      }),
+      // ...add more providers here
     ],
-    secret: process.env.NEXTAUTH_SECRET,
-    pages: {
-        signIn: "src/app/components/admin-panel/Login.tsx", // Página de SignIn
+    callbacks: {
+      async signIn({ user, account }: { user: AuthUser; account: Account }) {
+        if (account?.provider == "credentials") {
+          return true;
+        }
+        if (account?.provider == "github") {
+          await connectMongoDB();
+          try {
+            const existingUser = await User.findOne({ email: user.email });
+            if (!existingUser) {
+              const newUser = new User({
+                email: user.email,
+              });
+  
+              await newUser.save();
+              return true;
+            }
+            return true;
+          } catch (err) {
+            console.log("Error saving user", err);
+            return false;
+          }
+        }
+      },
     },
-});
-
-export { handler as GET, handler as POST };
+  };
+  
+  export const handler = NextAuth(authOptions);
+  export { handler as GET, handler as POST };

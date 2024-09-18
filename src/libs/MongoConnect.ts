@@ -23,3 +23,5 @@ export const connectMongoDB = async () => {
         throw new Error("Failed to connect to MongoDB.");
     }
 };
+
+export default connectMongoDB;
