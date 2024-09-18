@@ -17,6 +17,7 @@ const Checkout = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
+  const [phone, setPhone] = useState(""); // Add phone number state
   const [isFormValid, setIsFormValid] = useState(true);
 
   const products = useAppSelector((state) => state.cartReducer);
@@ -27,21 +28,18 @@ const Checkout = () => {
     return total;
   };
 
-  // Function to handle form submission
   const handlePayNow = () => {
-    if (
-      fullName &&
-      email &&
-      address &&
-      city &&
-      state &&
-      zipCode
-    ) {
-      router.push("/payment");
+    if (fullName && email && address && city && state && zipCode && phone) {
+      // Construct the URL with query parameters
+      const queryString = `/payment?customer=${encodeURIComponent(fullName)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}&address=${encodeURIComponent(address)}&city=${encodeURIComponent(city)}&state=${encodeURIComponent(state)}&zipCode=${encodeURIComponent(zipCode)}&amount=${getTotal()}&items=${products.length}`;
+  
+      // Use router.push with the constructed query string
+      router.push(queryString);
     } else {
       setIsFormValid(false); // Set form validity to false if any field is empty
     }
   };
+  
 
   return (
     <div className="bg-gradient-to-r from-cyan-300 to-[#1385fc] w-full min-h-screen p-6 flex items-center justify-center">
@@ -134,6 +132,19 @@ const Checkout = () => {
                 onChange={(e) => setState(e.target.value)}
               />
             </div>
+
+          {/* Add the phone number input */}
+          <div>
+            <label className="block text-gray-700">Phone Number</label>
+            <input
+              type="tel"
+              placeholder="123-456-7890"
+              className={`mt-1 block w-full p-2 border rounded ${!phone && !isFormValid ? 'border-red-500' : ''}`}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+
             <div>
               <label className="block text-gray-700">ZIP Code</label>
               <input
